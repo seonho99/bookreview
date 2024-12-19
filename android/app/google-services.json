@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "706664211856",
+    "project_id": "bookreview-8f1b1",
+    "storage_bucket": "bookreview-8f1b1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706664211856:android:7b8fe9b565b4e447903f15",
+        "android_client_info": {
+          "package_name": "com.example.bookrevie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSFPnSQU04ZJ69muDW1DzpSzwrLQjUNaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706664211856:android:85dfdd756a468f42903f15",
+        "android_client_info": {
+          "package_name": "com.example.bookreview"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSFPnSQU04ZJ69muDW1DzpSzwrLQjUNaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

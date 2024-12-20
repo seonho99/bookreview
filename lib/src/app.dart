@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'imsi/home.dart';
-
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -12,17 +10,17 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   late GoRouter router;
+
   @override
   void initState() {
     super.initState();
     // router
-    router = GoRouter(routes: [
-      GoRoute(path: '/',builder: (context, state) => const Home(),),
-      // GoRoute(path: '/detail',builder: (context, state) => const Detail(),),
-    ],
-    initialLocation: '/',
+    router = GoRouter(
+      routes: [],
+      initialLocation: '/',
     );
   }
+
   @override
   Widget build(BuildContext context) {
     // gorouter navigation 2.0 부터 사용

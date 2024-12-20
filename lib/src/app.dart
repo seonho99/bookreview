@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'splash/page/splash_page.dart';
+
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -16,7 +18,10 @@ class _AppState extends State<App> {
     super.initState();
     // router
     router = GoRouter(
-      routes: [],
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => SplashPage(),
+        ),
+      ],
       initialLocation: '/',
     );
   }

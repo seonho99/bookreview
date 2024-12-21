@@ -47,10 +47,6 @@ class SplashPage extends StatelessWidget {
                       );
                     }
                   ),
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyle(
-                  //     fontSize: 13,
-                  //     color: Color(0xff878787),
 
                   SizedBox(height: 20),
                   Center(

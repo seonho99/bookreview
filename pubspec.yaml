@@ -44,6 +44,12 @@ dependencies:
   cloud_firestore: ^5.5.1
   firebase_storage: ^12.3.7
   google_fonts: ^6.2.1
+  hydrated_bloc: ^9.1.5
+  path_provider: ^2.1.5
+  flutter_svg: ^2.0.16
+  google_sign_in: ^6.2.2
+  sign_in_with_apple: ^6.1.4
+  crypto: ^3.0.6
 
 dev_dependencies:
   flutter_test:

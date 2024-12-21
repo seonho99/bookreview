@@ -1,6 +1,9 @@
+import 'package:bookreview/src/common/init/page/init_page.dart';
+import 'package:bookreview/src/root/page/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'login/page/login_page.dart';
 import 'splash/page/splash_page.dart';
 
 class App extends StatefulWidget {
@@ -18,11 +21,14 @@ class _AppState extends State<App> {
     super.initState();
     // router
     router = GoRouter(
-      routes: [
-        GoRoute(path: '/', builder: (context, state) => SplashPage(),
-        ),
-      ],
       initialLocation: '/',
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => RootPage(),
+        ),
+        GoRoute(path: '/login', builder: (context, state) => LoginPage(),
+        ),
+
+      ],
     );
   }
 

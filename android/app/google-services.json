@@ -7,31 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:706664211856:android:7b8fe9b565b4e447903f15",
-        "android_client_info": {
-          "package_name": "com.example.bookrevie"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBSFPnSQU04ZJ69muDW1DzpSzwrLQjUNaE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:706664211856:android:85dfdd756a468f42903f15",
         "android_client_info": {
           "package_name": "com.example.bookreview"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "706664211856-146vj15618ibtf5vts5n9bn9cddlbu4h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bookreview",
+            "certificate_hash": "d8d24cb6ead0a315e217ca6cca85d65ce3660032"
+          }
+        },
+        {
+          "client_id": "706664211856-bnl0dmtff154mo21qaabadr06er5kk40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBSFPnSQU04ZJ69muDW1DzpSzwrLQjUNaE"
@@ -39,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706664211856-bnl0dmtff154mo21qaabadr06er5kk40.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "706664211856-s5gbo2ttv69u4v5ksbh8hnc2ut8b84d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bookreview"
+              }
+            }
+          ]
         }
       }
     }

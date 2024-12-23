@@ -3,8 +3,9 @@ import 'package:bookreview/src/common/model/user_model.dart';
 import 'package:bookreview/src/common/repository/authentication_repository.dart';
 import 'package:bookreview/src/common/repository/user_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
-class AuthenticationCubit extends Cubit<AuthenticationState> {
+class AuthenticationCubit extends Cubit<AuthenticationState> with ChangeNotifier{
   final AuthenticationRepository _authenticationRepository;
   final UserRepository _userRepository;
 
@@ -12,6 +13,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       : super(AuthenticationState());
 
   void init() {
+    _authenticationRepository.logout();
     _authenticationRepository.user.listen((user) {
       _userStateChangedEvent(user);
     });
@@ -33,6 +35,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         ));
       }
     }
+    notifyListeners(); // 상태가 변경되면 감지
   }
   void googleLogin() async {
     await _authenticationRepository.signInWithGoogle();
@@ -54,6 +57,7 @@ enum AuthenticationStatus {
   authentication,
   unAuthenticated,
   unknown,
+  init,
   error,
 }
 
@@ -62,7 +66,7 @@ class AuthenticationState extends Equatable {
   final UserModel? user;
 
   AuthenticationState({
-    this.status = AuthenticationStatus.unknown,
+    this.status = AuthenticationStatus.init,
     this.user,
   });
 

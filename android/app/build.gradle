@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bookreview"
+    namespace = "com.example.bookreview99"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

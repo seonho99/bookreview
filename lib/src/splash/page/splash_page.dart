@@ -4,6 +4,7 @@ import 'package:bookreview/src/common/enum/common_state_status.dart';
 import 'package:bookreview/src/splash/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../common/components/app_font.dart';
 
@@ -13,7 +14,8 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AppDataLoadCubit, AppDataLoadState>(
-      listenWhen: (previous, current) => current.status == CommonStateStatus.loaded,
+      listenWhen: (previous, current) =>
+          current.status == CommonStateStatus.loaded,
       listener: (context, state) {
         context.read<SplashCubit>().changeLoadStatus(LoadStatus.auth_check);
         context.read<AuthenticationCubit>().init();
@@ -38,16 +40,14 @@ class SplashPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   BlocBuilder<SplashCubit, LoadStatus>(
-                    builder: (context, state) {
-                      return AppFont(
-                        '${state.message} 중 입니다.',
-                        textAlign: TextAlign.center,
-                        size: 13,
-                        color: Color(0xff878787),
-                      );
-                    }
-                  ),
-
+                      builder: (context, state) {
+                    return AppFont(
+                      '${state.message} 중 입니다.',
+                      textAlign: TextAlign.center,
+                      size: 13,
+                      color: Color(0xff878787),
+                    );
+                  }),
                   SizedBox(height: 20),
                   Center(
                     child: CircularProgressIndicator(

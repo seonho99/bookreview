@@ -37,6 +37,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>flutter imagePicker</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>flutter imagePicker</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>flutter imagePicker</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

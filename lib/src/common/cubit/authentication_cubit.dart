@@ -27,7 +27,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> with ChangeNotifier
       // 로그인 상태
       var result = await _userRepository.findUserOne(user.uid!);
       if (result == null) {
-        emit(state.copyWith(status: AuthenticationStatus.unknown));
+        emit(state.copyWith(user: user,status: AuthenticationStatus.unknown));
       } else {
         emit(state.copyWith(
           user: result,
@@ -37,6 +37,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> with ChangeNotifier
     }
     notifyListeners(); // 상태가 변경되면 감지
   }
+
+  void reloadAuth(){
+    _userStateChangedEvent(state.user);
+  }
+
+
   void googleLogin() async {
     await _authenticationRepository.signInWithGoogle();
   }

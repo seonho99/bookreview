@@ -2,17 +2,21 @@ import 'dart:io';
 
 import 'package:bookreview/src/common/components/app_font.dart';
 import 'package:bookreview/src/common/components/btn.dart';
+import 'package:bookreview/src/common/cubit/authentication_cubit.dart';
+import 'package:bookreview/src/common/cubit/upload_cubit.dart';
 import 'package:bookreview/src/signup/cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../common/components/loading.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _signupView(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -62,6 +66,68 @@ class SignupPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<SignupCubit, SignupState>(
+          listenWhen: (previous, current) => previous.status != current.status,
+          listener: (context, state) {
+            switch (state.status) {
+              case SignupStatus.init:
+                break;
+              case SignupStatus.loading:
+                break;
+              case SignupStatus.uploading:
+                context.read<UploadCubit>().uploadUserProFile(
+                    state.profileFile!, state.userModel!.uid!);
+                break;
+              case SignupStatus.success:
+                context.read<AuthenticationCubit>().reloadAuth();
+                break;
+              case SignupStatus.fail:
+                break;
+            }
+          },
+        ),
+        BlocListener<UploadCubit, UploadState>(
+          listener: (context, state) {
+            switch (state.status) {
+              case UploadStatus.init:
+                break;
+              case UploadStatus.uploading:
+                state.percent!.toStringAsFixed(2);
+                context
+                    .read<SignupCubit>()
+                    .uploadPercent(state.percent!.toStringAsFixed(2));
+                break;
+              case UploadStatus.success:
+                context.read<SignupCubit>().updateProfileImage(state.url!);
+                break;
+              case UploadStatus.fail:
+                break;
+            }
+          },
+        ),
+      ],
+      child: Stack(
+        children: [
+          _signupView(context),
+          BlocBuilder<SignupCubit, SignupState>(
+            buildWhen: (previous, current) => previous.percent != current.percent || previous.status != current.status,
+            builder: (context, state) {
+              if(state.percent != null && state.status == SignupStatus.uploading){
+                return Loading(loadingMessage: '${state.percent}%');
+              } else{
+                return Container();
+              }
+            },
+          ),
+        ],
       ),
     );
   }

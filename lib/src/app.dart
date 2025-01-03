@@ -1,5 +1,6 @@
 import 'package:bookreview/src/common/cubit/authentication_cubit.dart';
 import 'package:bookreview/src/common/init/page/init_page.dart';
+import 'package:bookreview/src/common/repository/user_repository.dart';
 import 'package:bookreview/src/root/page/root_page.dart';
 import 'package:bookreview/src/signup/cubit/signup_cubit.dart';
 import 'package:bookreview/src/signup/page/signup_page.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'home/page/hame_page.dart';
 import 'login/page/login_page.dart';
 import 'splash/page/splash_page.dart';
 
@@ -31,9 +33,9 @@ class _AppState extends State<App> {
         var authStatus = context.read<AuthenticationCubit>().state.status;
         switch (authStatus) {
           case AuthenticationStatus.authentication:
-            break;
+            return '/home';
           case AuthenticationStatus.unAuthenticated:
-            return 'signup';
+            return '/signup';
           case AuthenticationStatus.unknown:
             return '/login';
           case AuthenticationStatus.init:
@@ -53,9 +55,15 @@ class _AppState extends State<App> {
           builder: (context, state) => LoginPage(),
         ),
         GoRoute(
+          path: '/home',
+          builder: (context, state) => HomePage(),
+        ),
+        GoRoute(
           path: '/signup',
           builder: (context, state) => BlocProvider(
-            create: (context) => SignupCubit(),
+            create: (context) => SignupCubit(context.read<AuthenticationCubit>().state.user!,
+            context.read<UserRepository>(),
+            ),
             child: SignupPage(),
           ),
         ),
